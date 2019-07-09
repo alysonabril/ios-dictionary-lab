@@ -10,7 +10,19 @@ Fork and clone this repo. On your fork, answer and commit the follow questions. 
 - Add two more countries to your dictionary.
 
 - Translate at least 3 of the capital names into another language.
+```swift
+var citiesDict = ["Colombia": "Bogota", "Ecuador": "Quito", "England": "London"]
 
+citiesDict["France"] = "Paris"
+citiesDict["Italy"] = "Rome"
+print(citiesDict)
+
+citiesDict["France"] = "باريس"//arabic
+citiesDict["Italy"] = "روما"//arabic
+citiesDict["England"] = "لندن"//arabic
+print(citiesDict)
+
+```
 
 ## Question 2
 
@@ -27,8 +39,46 @@ Fork and clone this repo. On your fork, answer and commit the follow questions. 
 - Remove the new keys made in the previous two steps
 
 - Add 2 to every value inside of `someDict`.
+```swift
+
+var someDict:[String:Int] = ["One": 1, "Two": 4, "Three": 9, "Four": 16, "Five": 25]
+// Using `someDict`, add together the values associated with "Three" and "Five" and print the result.
 
 
+
+
+
+// - Add values to the dictionary for the keys "Six" and "Seven".
+someDict["six"] = 1
+someDict["seven"] = 2
+
+// - Make a key called `productUpToSeven` and set its value equal to the product of all the values.
+someDict["productUpToSeven"] = someDict.values.reduce(1, *)
+
+//- Make a key called `sumUpToSix` and set its value equal to the sum of the keys "One", "Two", "Three", "Four", "Five" and "Six". //david said to add sum of values
+
+someDict["sumUpToSix"] = 0
+var sumOfSixKeys = 0
+
+for (key, value) in someDict {
+if key != "seven"{
+sumOfSixKeys += value
+}
+}
+someDict["sumUpToSix"] = sumOfSixKeys
+
+//- Remove the new keys made in the previous two steps
+someDict["sumUpToSix"] = nil
+someDict["productUpToSeven"] = nil
+//- Add 2 to every value inside of `someDict`.
+
+for (key,value) in someDict {
+someDict[key] = value + 2
+}
+
+print(someDict)
+
+```
 ## Question 3
 
 Create a variable that is explicitly typed as a dictionary that maps strings to floating point numbers. Initialize the variable to the data shown in the table below which lists an author name and their comprehensibility score.
@@ -50,7 +100,38 @@ Using the dictionary created in the previous problem, do the following:
 - Write an if/else statement that compares the score of John Krakaur with Mark Twain. Print out the name of the author with the highest score.
 
 - Use a for-loop to iterate through the dictionary you created at the beginning of the problem, and print out the content in the form of key: value, one entry per line.
+```swift
 
+
+var myAuthorDictionary: [String: Float]
+myAuthorDictionary = [
+"Mark Twain": 8.9,
+"Nathaniel Hawthorne": 5.1,
+"John Steinbeck": 2.3,
+"C.S. Lewis": 9.9,
+"Jon Krakaur": 6.1
+]
+
+//- Print out the floating-point score for “John Steinbeck”.
+print(myAuthorDictionary["John Steinbeck"] ?? "no comprehension score for this author")
+
+//- Add an additional author named “Erik Larson” with an assigned score of 9.2.
+myAuthorDictionary["Erik Larson"] = 9.2
+
+//- Write an if/else statement that compares the score of John Krakaur with Mark Twain. Print out the name of the author with the highest score.
+if "John Krakaur" > "Mark Twain" {
+print("John Krakaur")
+} else {
+print("Mark Twain")
+}
+
+//Use a for-loop to iterate through the dictionary you created at the beginning of the problem, and print out the content in the form of key: value, one entry per line.
+
+for (key, value) in myAuthorDictionary {
+print("\(key): \(value)")
+}
+
+```
 
 ## Question 4
 
@@ -92,7 +173,40 @@ var message = "hello world"
 You are also given an `encodedMessage` which contains only lowercase letters and spaces. Use the `code` dictionary to decode the message and print it.
 `var encodedMessage = "uijt nfttbhf jt ibse up sfbe"`
 
+```swift
+var message = "hello world"
+var codedMessage = ""
+var space = " "
+//subscript message into two words and then join them
+for char in message {
+for (key,value) in code {
+if String(char) == key {
+codedMessage.append(value)
+}
+}
+if String(char) == space {
+codedMessage.append(space)
+}
+}
+print(codedMessage)
 
+
+//You are also given an `encodedMessage` which contains only lowercase letters and spaces. Use the `code` dictionary to decode the message and print it.
+var encodedMessage = "uijt nfttbhf jt ibse up sfbe"
+var decodedMessage = ""
+
+for char in encodedMessage {
+for (key, value) in code {
+if String(char) == value {
+decodedMessage.append(key)
+}
+}
+if String(char) == space {
+decodedMessage.append(space)
+}
+}
+print(decodedMessage)
+```
 ## Question 5
 
 You are given an array of dictionaries. Each dictionary in the array contains exactly 2 keys `“firstName”` and `“lastName”`. Create an array of strings called `firstNames` that contains only the values for `“firstName”` from each dictionary.
@@ -123,6 +237,11 @@ var people: [[String:String]] = [
 ```
 
 Now, create an array of strings called `fullNames` that contains the values for `“firstName”` and `“lastName”` from the dictionary separated by a space.
+
+```swift
+
+
+```
 
 
 ## Question 6
@@ -160,7 +279,10 @@ var peopleWithScores: [[String: String]] = [
 ```
 
 Print out the dictionary above in the following format:  **full name - score**
+```swift
 
+
+```
 
 ## Question 7
 
@@ -169,7 +291,10 @@ Print out the dictionary above in the following format:  **full name - score**
 You are given an array of integers. The frequency of a number is the number of times it appears in the array. Find out the frequency of each one.
 
 Print the numbers in ascending order followed by their frequency.
+```swift
 
+
+```
 
 ## Question 8
 
@@ -177,12 +302,18 @@ Print the most common letter in the string below:
 
 `var myString = "We're flooding people with information. We need to feed it through a processor. A human must turn information into intelligence or knowledge. We've tended to forget that no computer will ever ask a new question."`
 
+```swift
 
+
+```
 ## Question 9
 
 Write code that creates a dictionary where the keys are Ints between 0 and 20 inclusive, and each key's value is its cube.
 
+```swift
 
+
+```
 ## Question 10
 
 Write code that iterates through `testStates` and prints out whether or not that key is in `statePop`.
@@ -219,7 +350,10 @@ var deposits: [String: [Double]] = [
 Print the second most common letter in the string below:
 
 `var myString = "We're flooding people with information. We need to feed it through a processor. A human must turn information into intelligence or knowledge. We've tended to forget that no computer will ever ask a new question."`
+```swift
 
+
+```
 
 ## Question 13
 
