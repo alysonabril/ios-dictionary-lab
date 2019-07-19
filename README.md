@@ -385,6 +385,15 @@ Write code that iterates through `testStates` and prints out whether or not that
 ```swift
 let statePop = ["Alabama": 4.8, "Alaska": 0.7, "Arizona": 6.7, "Arkansas": 3.0]
 let testStates = ["California","Arizona", "Alabama", "New Mexico"]
+let statePopKeys = statePop.keys
+
+for state in testStates {
+if statePopKeys.contains(state) {
+print("\(state) appears in \'statePop\' as a key")
+} else {
+print("\(state) does not appear in \'statePop\' as a key")
+}
+}
 ```
 
 
