@@ -44,10 +44,6 @@ print(citiesDict)
 var someDict:[String:Int] = ["One": 1, "Two": 4, "Three": 9, "Four": 16, "Five": 25]
 // Using `someDict`, add together the values associated with "Three" and "Five" and print the result.
 
-
-
-
-
 // - Add values to the dictionary for the keys "Six" and "Seven".
 someDict["six"] = 1
 someDict["seven"] = 2
@@ -234,12 +230,29 @@ var people: [[String:String]] = [
         "lastName": "Bowen"
     ]
 ]
+
+var firstNames = [String]()
+
+for person in people {
+if let firstName = person["firstName"] {
+print(firstName)
+firstNames.append(firstName)
+}
+}
 ```
 
 Now, create an array of strings called `fullNames` that contains the values for `“firstName”` and `“lastName”` from the dictionary separated by a space.
 
 ```swift
-
+for person in people {
+if let firstName = person["firstName"] {
+if let lastName = person["lastName"] {
+let fullName = "\(firstName) \(lastName)"
+fullNames.append(fullName)
+}
+}
+}
+print(fullNames)
 
 ```
 
@@ -280,7 +293,28 @@ var peopleWithScores: [[String: String]] = [
 
 Print out the dictionary above in the following format:  **full name - score**
 ```swift
+var bestPerson = ""
+var bestScore = 0
 
+for person in peopleWithScores {
+for (key, value) in person {
+if let intValue = Int(value) {
+if key == "score" && intValue > bestScore {
+if let firstName = person["firstName"] {
+if let lastName = person["lastName"] {
+let fullName = "\(firstName) \(lastName)"
+bestPerson = fullName
+bestScore = intValue
+}
+}
+}
+}
+}
+}
+
+var fullNameAndScore = "\(bestPerson) - \(bestScore)"
+
+print(fullNameAndScore)
 
 ```
 
@@ -293,6 +327,11 @@ You are given an array of integers. The frequency of a number is the number of t
 Print the numbers in ascending order followed by their frequency.
 ```swift
 
+var numbers = [1, 2, 3, 2, 3, 5, 2, 1, 3, 4, 2, 2, 2]
+let mappedItems = numbers.map { ($0, 1) }
+let numbersDict = Dictionary(mappedItems, uniquingKeysWith: +)
+
+print(numbersDict)
 
 ```
 
@@ -303,7 +342,26 @@ Print the most common letter in the string below:
 `var myString = "We're flooding people with information. We need to feed it through a processor. A human must turn information into intelligence or knowledge. We've tended to forget that no computer will ever ask a new question."`
 
 ```swift
+var letterDictionary: [String: Int] = [:]
+var counter = 0
 
+var letter = String()
+
+for char in myString {
+
+if letterDictionary[String(char)] == nil {
+letterDictionary[String(char)] = 1
+}
+letterDictionary[String(char)] = (letterDictionary[String(char)]!) + 1
+}
+
+for (key,value) in letterDictionary {
+if value > counter && key != " " {
+counter = value
+letter = key
+}
+}
+print("most common letter: \(letter), it repeats: \(counter) times")
 
 ```
 ## Question 9
