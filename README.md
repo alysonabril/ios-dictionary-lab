@@ -369,7 +369,13 @@ print("most common letter: \(letter), it repeats: \(counter) times")
 Write code that creates a dictionary where the keys are Ints between 0 and 20 inclusive, and each key's value is its cube.
 
 ```swift
+var numberDictWithCubes: [Int: Int] = [:]
 
+for number in 0...20 {
+let numberCubed =  number * number * number
+numberDictWithCubes[number] = numberCubed
+}
+print(numberDictWithCubes.sorted(by: <))
 
 ```
 ## Question 10
